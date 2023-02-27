@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Header</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registerform" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+    <ion-item>
+      <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Confirme password <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="password2" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nombre <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Apelldio <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="lastname" type="text"></ion-input>
+    </ion-item>
+    <ion-button block color="primary" expand="block" type="submit" [disabled]="registerform.invalid">
+      Registrar
+    </ion-button>
+  </div>
+  </form>
+</ion-content>
