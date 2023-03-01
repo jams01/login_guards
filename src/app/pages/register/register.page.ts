@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthFirebaseService } from 'src/app/services/auth-firebase.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CameraService } from 'src/app/services/camera.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class RegisterPage implements OnInit {
   registerform: FormGroup;
   constructor(private fb: FormBuilder, private alertController: AlertController, 
-    private auth: AuthenticationService, private router: Router) {
+    private auth: AuthenticationService, private router: Router,
+    private authf: AuthFirebaseService, private camera: CameraService) {
     this.registerform = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
@@ -40,11 +43,18 @@ export class RegisterPage implements OnInit {
       this.presentAlert("Las contraseñas no coinciden");
       return;
     }
-    this.auth.register(this.registerform.value).then((val)=>{
-      this.router.navigateByUrl('',{replaceUrl: true});
-    }).catch(()=>{
-      this.presentAlert("Error en el registro");
-    });
+    this.camera.getfotoblob().then((foto:Blob)=>{
+      this.authf.register(this.registerform.value, foto).then((val)=>{
+        this.router.navigateByUrl('/tabs/tab1',{replaceUrl: true});
+      }).catch(()=>{
+        this.presentAlert("Error en el registro");
+      });
+    })
+    
+  }
+
+  tomarfoto(){
+    this.camera.tomarfoto();
   }
 
 }

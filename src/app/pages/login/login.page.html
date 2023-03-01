@@ -6,11 +6,11 @@
       <ion-img [src]="'assets/logo.png'"></ion-img>
     <ion-item>
       <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input required formControlName="email" type="text"></ion-input>
+      <ion-input autocomplete name="correo" required formControlName="email" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input required formControlName="password" type="text"></ion-input>
+      <ion-input autocomplete name="password" required formControlName="password" type="text"></ion-input>
     </ion-item>
     <ion-button block color="primary" type="submit" expand="block" [disabled]="loginform.invalid">
       Login

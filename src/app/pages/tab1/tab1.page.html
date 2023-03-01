@@ -7,8 +7,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div *ngFor="let foto of camera.fotos">
+    <ion-img [src]="foto.webPath"></ion-img>
+  </div>
+  
   <ion-button (click)="logout()" expand="block" fill="clear" shape="round">
     log out
   </ion-button>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="tomarfoto()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
